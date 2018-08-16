@@ -9,7 +9,7 @@ class App extends Component {
       <Container>
         <Row>
           <h1>Hangman Game</h1>
-          <Game title='Evan' />
+          <Game/>
         </Row>
       </Container>
     );
