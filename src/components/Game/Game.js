@@ -49,15 +49,23 @@ class Game extends React.Component {
         if(this.state.updatedGuess === this.state.countryArray) {
             console.log('you won');
         }
-        for (var i=0; i<this.state.countryLength; i++) {
-            if(this.state.guess === this.state.countryArray[i]) {
-                console.log('letter exists');
-                newUpdatedGuess[i] = this.state.guess;
-                this.setState({
-                   updatedGuess: newUpdatedGuess 
-                })
+        if (this.state.countryArray.indexOf(this.state.guess) !== -1) {
+            for (var i=0; i<this.state.countryLength; i++) {
+                if(this.state.guess === this.state.countryArray[i]) {
+                    console.log('letter exists');
+                    newUpdatedGuess[i] = this.state.guess;
+                    this.setState({
+                       updatedGuess: newUpdatedGuess 
+                    })
+                } 
             }
+        } else {
+            console.log('letter doesnt exist');
+            this.setState({
+                guessed: [...this.state.guessed, this.state.guess]
+            });
         }
+        
         
         
         
