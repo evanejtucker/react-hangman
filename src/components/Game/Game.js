@@ -20,7 +20,7 @@ class Game extends React.Component {
     componentDidUpdate() {
         console.log('component updated');
         
-        this.checkLetter(); 
+        // this.checkLetter(); 
         console.log(this.state);
     }
 
@@ -43,16 +43,23 @@ class Game extends React.Component {
     }
 
     checkLetter = ()=> {
-        
+        var newUpdatedGuess = this.state.updatedGuess;
+        console.log(this.state.updatedGuess);
+        console.log(this.state.countryArray);
+        if(this.state.updatedGuess === this.state.countryArray) {
+            console.log('you won');
+        }
         for (var i=0; i<this.state.countryLength; i++) {
             if(this.state.guess === this.state.countryArray[i]) {
                 console.log('letter exists');
-                this.state.updatedGuess[i] = this.state.guess
+                newUpdatedGuess[i] = this.state.guess;
+                this.setState({
+                   updatedGuess: newUpdatedGuess 
+                })
             }
         }
-        console.log(this.state.guess);
-        console.log(this.state.countryArray);
-        console.log(this.state.updatedGuess);
+        
+        
         
     }
 
@@ -64,11 +71,7 @@ class Game extends React.Component {
             guess: value,
             displayGuess: ''
         });
-        console.log(this);
-    }
-
-    alertKey = (event)=> {
-        console.log(event.target);
+        this.checkLetter();
     }
 
     render() {
